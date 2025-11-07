@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@theme {
+  --color-coffee-100: oklch(24% 0.023 329.708);
+}
+
+@layer base {
+  * {
+    @apply box-border m-0 p-0;
+  }
+
+  body {
+    @apply bg-coffee-100 text-white;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply cursor-pointer bg-blue-500 hover:bg-blue-600 active:bg-blue-700;
+  }
+}
