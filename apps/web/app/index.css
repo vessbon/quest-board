@@ -31,12 +31,20 @@
   }
 
   body {
-    @apply bg-coffee-100 text-white;
+    @apply bg-base-200 text-base-content font-display;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply cursor-pointer bg-blue-500 hover:bg-blue-600 active:bg-blue-700;
+    @apply cursor-pointer text-primary-content bg-primary hover:brightness-90 active:brightness-75;
+  }
+
+  .divider-primary {
+    @apply w-full border-t my-4;
+  }
+
+  .list-width {
+    @apply max-w-5xl min-w-xs w-1/2;
   }
 }
