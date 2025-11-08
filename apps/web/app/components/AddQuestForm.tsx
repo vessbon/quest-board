@@ -21,11 +21,8 @@ export default function AddQuestForm({ addQuest }: AddQuestFormProps) {
       className="max-w-md min-w-xs w-1/3 text-center"
       onSubmit={handleSubmit}
     >
-      <label className="font-bold mb-4 text-4xl block" htmlFor="quest-first">
-        Quest
-      </label>
       <input
-        className="border p-2 w-full text-center text-lg outline-none mb-2"
+        className="input-primary"
         name="title"
         id="quest-first"
         type="text"
@@ -33,7 +30,7 @@ export default function AddQuestForm({ addQuest }: AddQuestFormProps) {
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
-      <button className="btn-primary p-1 w-full" name="submit" type="submit">
+      <button className="btn-primary p-1" name="submit" type="submit">
         Add
       </button>
     </form>

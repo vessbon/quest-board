@@ -28,10 +28,12 @@ function App() {
 
   return (
     <main className="mt-20 flex flex-col gap-4 min-h-screen items-center">
+      <h1 className="font-bold text-4xl block">Quest Board</h1>
+
       <div className="flex flex-col items-center list-width">
-        <div className="divider-primary my-8!"></div>
+        <div className="divider-primary"></div>
         <AddQuestForm addQuest={addQuest} />
-        <div className="divider-primary my-12!"></div>
+        <div className="divider-primary"></div>
       </div>
 
       <QuestList
