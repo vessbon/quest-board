@@ -20,18 +20,34 @@ export default function QuestCard({
   };
 
   return (
-    <div>
-      <h2>{quest.title}</h2>
-      <label htmlFor={quest.id}>Completed</label>
-      <input
-        className=""
-        name="completed"
-        id={quest.id}
-        type="checkbox"
-        checked={checked}
-        onChange={handleChange}
-      />
-      <button onClick={() => deleteQuest(quest.id)}>Delete</button>
+    <div
+      className={
+        (checked ? "border-success " : "border-base-300 ") +
+        "border bg-base-100 py-3 px-5 w-full"
+      }
+    >
+      <h2 className="text-2xl mb-2">{quest.title}</h2>
+      <div className="flex justify-between items-center">
+        <div className="flex items-center">
+          <input
+            className="cursor-pointer mr-2 w-5 h-5 accent-success"
+            name="completed"
+            id={quest.id}
+            type="checkbox"
+            checked={checked}
+            onChange={handleChange}
+          />
+          <label className="text-lg" htmlFor={quest.id}>
+            Completed
+          </label>
+        </div>
+        <button
+          className="btn-primary py-1 px-2"
+          onClick={() => deleteQuest(quest.id)}
+        >
+          Delete
+        </button>
+      </div>
     </div>
   );
 }

@@ -17,13 +17,13 @@ export default function AddQuestForm({ addQuest }: AddQuestFormProps) {
   };
 
   return (
-    <div className="flex min-h-screen justify-center items-center text-center">
-      <form className="max-w-md min-w-xs w-1/3" onSubmit={handleSubmit}>
-        <label className="font-bold mb-4 text-4xl block" htmlFor="quest-first">
-          Quest
-        </label>
+    <form
+      className="max-w-md min-w-xs w-1/3 text-center"
+      onSubmit={handleSubmit}
+    >
+      <div className="flex items-center h-12">
         <input
-          className="border p-2 w-full text-center text-lg placeholder-gray-500 outline-none mb-2"
+          className="input-primary h-full"
           name="title"
           id="quest-first"
           type="text"
@@ -31,10 +31,14 @@ export default function AddQuestForm({ addQuest }: AddQuestFormProps) {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
-        <button className="btn-primary p-1 w-full" name="submit" type="submit">
+        <button
+          className="btn-primary h-full p-2 text-lg"
+          name="submit"
+          type="submit"
+        >
           Add
         </button>
-      </form>
-    </div>
+      </div>
+    </form>
   );
 }
