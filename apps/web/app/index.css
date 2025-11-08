@@ -40,6 +40,10 @@
     @apply cursor-pointer text-primary-content bg-primary hover:brightness-90 active:brightness-75;
   }
 
+  .input-primary {
+    @apply border p-2 text-center text-lg outline-none;
+  }
+
   .divider-primary {
     @apply w-full border-t my-4;
   }
