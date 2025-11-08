@@ -31,12 +31,7 @@ export default function AddQuestForm({ addQuest }: AddQuestFormProps) {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
-        <button
-          className="btn-primary p-1 w-full"
-          name="submit"
-          id="submit-quest"
-          type="submit"
-        >
+        <button className="btn-primary p-1 w-full" name="submit" type="submit">
           Add
         </button>
       </form>
