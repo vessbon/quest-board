@@ -27,8 +27,13 @@ function App() {
   };
 
   return (
-    <>
-      <AddQuestForm addQuest={addQuest} />
+    <main className="mt-20 flex flex-col gap-4 min-h-screen items-center">
+      <div className="flex flex-col items-center list-width">
+        <div className="divider-primary my-8!"></div>
+        <AddQuestForm addQuest={addQuest} />
+        <div className="divider-primary my-12!"></div>
+      </div>
+
       {quests.length > 0 && (
         <QuestCard
           key={quests.at(-1)!.id} // non-null assertion because length > 0
@@ -37,7 +42,7 @@ function App() {
           deleteQuest={deleteQuest}
         />
       )}
-    </>
+    </main>
   );
 }
 
