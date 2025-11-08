@@ -1,7 +1,7 @@
 import { useState } from "react";
 import type { Quest } from "./types";
 import AddQuestForm from "./components/AddQuestForm";
-import QuestCard from "./components/QuestCard";
+import QuestList from "./components/QuestList";
 
 function App() {
   const [quests, setQuests] = useState<Quest[]>([]);
@@ -34,14 +34,11 @@ function App() {
         <div className="divider-primary my-12!"></div>
       </div>
 
-      {quests.length > 0 && (
-        <QuestCard
-          key={quests.at(-1)!.id} // non-null assertion because length > 0
-          quest={quests.at(-1)!} // same here
-          toggleComplete={toggleComplete}
-          deleteQuest={deleteQuest}
-        />
-      )}
+      <QuestList
+        quests={quests}
+        toggleComplete={toggleComplete}
+        deleteQuest={deleteQuest}
+      />
     </main>
   );
 }
