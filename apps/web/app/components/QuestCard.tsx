@@ -20,7 +20,12 @@ export default function QuestCard({
   };
 
   return (
-    <div className="border border-base-300 bg-base-100 py-3 px-5 w-full">
+    <div
+      className={
+        (checked ? "border-success " : "border-base-300 ") +
+        "border bg-base-100 py-3 px-5 w-full"
+      }
+    >
       <h2 className="text-2xl mb-2">{quest.title}</h2>
       <div className="flex justify-between items-center">
         <div className="flex items-center">
