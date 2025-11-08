@@ -13,9 +13,13 @@ export default function QuestList({
   toggleComplete,
   deleteQuest,
 }: QuestListProps) {
+  const sortedTasks = [...quests].sort((a, b) => {
+    return (b.completed ? 1 : 0) - (a.completed ? 1 : 0);
+  });
+
   return (
     <ul className="flex flex-col gap-2 list-width">
-      {quests.map((quest) => (
+      {sortedTasks.map((quest) => (
         <QuestCard
           key={quest.id}
           quest={quest}
