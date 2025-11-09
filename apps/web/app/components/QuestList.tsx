@@ -1,6 +1,6 @@
-import "../index.css";
 import type { Quest } from "../types";
 import QuestCard from "./QuestCard";
+import EmptyCard from "./EmptyCard";
 
 interface QuestListProps {
   quests: Quest[];
@@ -19,14 +19,18 @@ export default function QuestList({
 
   return (
     <ul className="flex flex-col gap-2 list-width">
-      {sortedTasks.map((quest) => (
-        <QuestCard
-          key={quest.id}
-          quest={quest}
-          toggleComplete={toggleComplete}
-          deleteQuest={deleteQuest}
-        />
-      ))}
+      {sortedTasks.length > 0 ? (
+        sortedTasks.map((quest) => (
+          <QuestCard
+            key={quest.id}
+            quest={quest}
+            toggleComplete={toggleComplete}
+            deleteQuest={deleteQuest}
+          />
+        ))
+      ) : (
+        <EmptyCard />
+      )}
     </ul>
   );
 }
