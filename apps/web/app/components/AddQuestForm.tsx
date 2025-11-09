@@ -17,7 +17,7 @@ export default function AddQuestForm({ addQuest }: AddQuestFormProps) {
 
   return (
     <form
-      className="max-w-md min-w-xs w-1/3 text-center"
+      className="flex justify-center max-w-md min-w-xs w-1/3 text-center"
       onSubmit={handleSubmit}
     >
       <div className="flex items-center h-12">
