@@ -1,4 +1,3 @@
-import "../index.css";
 import type { Quest } from "../types";
 import QuestCard from "./QuestCard";
 
