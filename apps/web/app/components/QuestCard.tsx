@@ -22,8 +22,7 @@ export default function QuestCard({
   return (
     <div
       className={
-        (checked ? "border-success " : "border-base-300 ") +
-        "border bg-base-100 py-3 px-5 w-full"
+        (checked ? "border-success " : "border-base-300 ") + "card-primary"
       }
     >
       <h2 className="text-2xl mb-2">{quest.title}</h2>

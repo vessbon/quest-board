@@ -44,6 +44,10 @@
     @apply border p-2 text-center text-lg outline-none;
   }
 
+  .card-primary {
+    @apply border bg-base-100 py-3 px-5 w-full;
+  }
+
   .divider-primary {
     @apply w-full border-t my-4;
   }
