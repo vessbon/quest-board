@@ -1,5 +1,5 @@
 export interface Quest {
-  id: string;
+  readonly id: string;
   title: string;
   completed: boolean;
 }
