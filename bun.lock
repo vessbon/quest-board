@@ -12,6 +12,7 @@
     "apps/api": {
       "name": "api",
       "dependencies": {
+        "dotenv": "^17.2.3",
         "hono": "^4.10.4",
         "kysely": "^0.28.8",
         "pg": "^8.16.3",
