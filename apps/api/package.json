@@ -3,6 +3,12 @@
   "module": "server.ts",
   "type": "module",
   "private": true,
+  "scripts": {
+    "dev": "bun --watch src/server.ts",
+    "apply-schema": "atlas schema apply --env local",
+    "codegen": "kysely-codegen --dialect postgres --camel-case --out-file ./src/db/types.ts",
+    "update-database": "bun apply-schema && bun codegen"
+  },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
     "@types/bun": "latest",
@@ -10,6 +16,7 @@
     "typescript": "~5.9.3"
   },
   "dependencies": {
+    "@types/pg": "^8.15.6",
     "dotenv": "^17.2.3",
     "hono": "^4.10.4",
     "kysely": "^0.28.8",
