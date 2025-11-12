@@ -4,7 +4,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "bun run src/server.ts",
+    "dev": "bun --watch src/server.ts",
     "apply-schema": "atlas schema apply --env local",
     "codegen": "kysely-codegen --dialect postgres --camel-case --out-file ./src/db/types.ts",
     "update-database": "bun apply-schema && bun codegen"
