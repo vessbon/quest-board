@@ -1,10 +1,17 @@
+variable "envfile" {
+    type    = string
+    default = "./.env"
+}
+
 locals {
-    db_user = getenv("POSTGRES_USER")
-    db_pass = urlescape(getenv("POSTGRES_PASSWORD"))
+  envfile = {
+    for line in split("\n", file(var.envfile)): split("=", line)[0] => regex("=(.*)", line)[0]
+    if !startswith(line, "#") && length(split("=", line)) > 1
+  }
 }
 
 env "local" {
-  url = "postgres://${local.db_user}:${local.db_pass}@localhost:5432/questboard?search_path=public&sslmode=disable"
+  url  = local.envfile["DATABASE_URL"]
   dev = "docker://postgres/18/dev?search_path=public"
   src = "file://db/schema.sql"
 }
