@@ -17,8 +17,8 @@ function App() {
   const toggleComplete = (id: Quest["id"]) => {
     setQuests(
       quests.map((quest) =>
-        quest.id === id ? { ...quest, completed: !quest.completed } : quest,
-      ),
+        quest.id === id ? { ...quest, completed: !quest.completed } : quest
+      )
     );
   };
 
