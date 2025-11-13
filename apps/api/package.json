@@ -17,7 +17,6 @@
   },
   "dependencies": {
     "@hono/trpc-server": "^0.4.0",
-    "@trpc/client": "^11.7.1",
     "@trpc/server": "^11.7.1",
     "@types/pg": "^8.15.6",
     "dotenv": "^17.2.3",
