@@ -1,4 +1,5 @@
 import { router, publicProcedure } from "../trpc";
+import { sql } from "kysely";
 import * as z from "zod";
 import { db } from "../db";
 
@@ -17,6 +18,15 @@ export const questRouter = router({
     return quest;
   }),
 
+  toggle: publicProcedure.input(z.uuid()).mutation(async ({ input }) => {
+    const quest = await db
+      .updateTable("quest")
+      .set("completed", sql`NOT completed`)
+      .where("id", "=", input)
+      .execute();
+    return quest;
+  }),
+
   create: publicProcedure
     .input(z.object({ title: z.string() }))
     .mutation(async ({ input }) => {
@@ -27,4 +37,8 @@ export const questRouter = router({
         .executeTakeFirst();
       return quest;
     }),
+
+  delete: publicProcedure.input(z.uuid()).mutation(async ({ input }) => {
+    await db.deleteFrom("quest").where("id", "=", input).execute();
+  }),
 });
