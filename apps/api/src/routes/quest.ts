@@ -1,0 +1,30 @@
+import { router, publicProcedure } from "../trpc";
+import * as z from "zod";
+import { db } from "../db";
+
+export const questRouter = router({
+  list: publicProcedure.query(async () => {
+    const quests = await db.selectFrom("quest").selectAll().execute();
+    return quests;
+  }),
+
+  byId: publicProcedure.input(z.uuid()).query(async ({ input }) => {
+    const quest = await db
+      .selectFrom("quest")
+      .selectAll()
+      .where("id", "=", input)
+      .executeTakeFirst();
+    return quest;
+  }),
+
+  create: publicProcedure
+    .input(z.object({ title: z.string() }))
+    .mutation(async ({ input }) => {
+      const quest = await db
+        .insertInto("quest")
+        .values(input)
+        .returningAll()
+        .executeTakeFirst();
+      return quest;
+    }),
+});
