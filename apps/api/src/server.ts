@@ -1,3 +1,4 @@
+import * as z from "zod";
 import { db } from "./db";
 import { Hono } from "hono";
 import { trpcServer } from "@hono/trpc-server";
@@ -11,16 +12,14 @@ const appRouter = router({
     return quests;
   }),
 
-  questById: publicProcedure
-    .input((val: unknown) => {
-      if (typeof val === "number") return val;
-      throw new Error(`Invalid input: ${typeof val}`);
-    })
-    .query(async (opts) => {
-      const { input } = opts;
-      const quest = await db.selectFrom("quest").where("id", "=", `${input}`);
-      return quest;
-    }),
+  questById: publicProcedure.input(z.number()).query(async (opts) => {
+    const { input } = opts;
+    const quest = await db
+      .selectFrom("quest")
+      .where("id", "=", `${input}`)
+      .executeTakeFirst();
+    return quest;
+  }),
 });
 
 app.use(
