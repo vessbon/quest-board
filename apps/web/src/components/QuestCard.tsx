@@ -33,7 +33,7 @@ export default function QuestCard({
             name="completed"
             id={quest.id}
             type="checkbox"
-            checked={checked}
+            checked={checked ?? false}
             onChange={handleChange}
           />
           <label className="text-lg" htmlFor={quest.id}>
