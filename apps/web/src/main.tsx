@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { QueryClientProvider } from "@tanstack/react-query";
-import { queryClient } from "./utils/trpc.ts";
+import { queryClient } from "./trpc.ts";
 import "./index.css";
 import App from "./App.tsx";
 

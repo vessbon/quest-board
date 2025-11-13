@@ -1,30 +1,39 @@
-import { useState } from "react";
 import type { Quest } from "./types";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { trpc } from "./trpc";
 import AddQuestForm from "./components/AddQuestForm";
 import QuestList from "./components/QuestList";
 
 function App() {
-  const [quests, setQuests] = useState<Quest[]>([]);
+  const { data: quests = [], refetch } = useQuery(
+    trpc.quest.list.queryOptions()
+  );
+  const addQuestMutation = useMutation(
+    trpc.quest.create.mutationOptions({
+      onSuccess: () => {
+        refetch();
+      },
+    })
+  );
+  const toggleCompleteMutation = useMutation(
+    trpc.quest.toggle.mutationOptions({
+      onSuccess: () => {
+        refetch();
+      },
+    })
+  );
+  const deleteQuestMutation = useMutation(
+    trpc.quest.delete.mutationOptions({
+      onSuccess: () => {
+        refetch();
+      },
+    })
+  );
 
-  const addQuest = (title: Quest["id"]) => {
-    setQuests([
-      ...quests,
-      { id: crypto.randomUUID(), title, completed: false },
-    ]);
-    console.log(quests);
-  };
-
-  const toggleComplete = (id: Quest["id"]) => {
-    setQuests(
-      quests.map((quest) =>
-        quest.id === id ? { ...quest, completed: !quest.completed } : quest
-      )
-    );
-  };
-
-  const deleteQuest = (id: Quest["id"]) => {
-    setQuests(quests.filter((quest) => quest.id !== id));
-  };
+  const addQuest = (title: Quest["title"]) =>
+    addQuestMutation.mutate({ title });
+  const toggleComplete = (id: Quest["id"]) => toggleCompleteMutation.mutate(id);
+  const deleteQuest = (id: Quest["id"]) => deleteQuestMutation.mutate(id);
 
   return (
     <main className="mt-20 flex flex-col gap-4 min-h-screen items-center">
