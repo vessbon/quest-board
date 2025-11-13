@@ -1,8 +1,8 @@
 import { router } from "./trpc";
 import { questRouter } from "./routes/quest";
 
-const appRouter = router({
+export const appRouter = router({
   quest: questRouter,
 });
 
-export default appRouter;
+export type AppRouter = typeof appRouter;
