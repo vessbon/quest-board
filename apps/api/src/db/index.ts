@@ -1,6 +1,6 @@
 import { Kysely, PostgresDialect, CamelCasePlugin } from "kysely";
 import { Pool } from "pg";
-import type { DB } from "./types";
+import type { DB } from "@repo/types";
 
 require("dotenv").config;
 
