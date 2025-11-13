@@ -12,14 +12,25 @@ const appRouter = router({
     return quests;
   }),
 
-  questById: publicProcedure.input(z.number()).query(async (opts) => {
-    const { input } = opts;
+  questById: publicProcedure.input(z.uuid()).query(async ({ input }) => {
     const quest = await db
       .selectFrom("quest")
-      .where("id", "=", `${input}`)
+      .selectAll()
+      .where("id", "=", input)
       .executeTakeFirst();
     return quest;
   }),
+
+  questCreate: publicProcedure
+    .input(z.object({ title: z.string() }))
+    .mutation(async ({ input }) => {
+      const quest = await db
+        .insertInto("quest")
+        .values(input)
+        .returningAll()
+        .executeTakeFirst();
+      return quest;
+    }),
 });
 
 app.use(
