@@ -16,6 +16,8 @@
     "typescript": "~5.9.3"
   },
   "dependencies": {
+    "@trpc/client": "^11.7.1",
+    "@trpc/server": "^11.7.1",
     "@types/pg": "^8.15.6",
     "dotenv": "^17.2.3",
     "hono": "^4.10.4",
