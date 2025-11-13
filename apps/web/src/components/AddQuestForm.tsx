@@ -1,5 +1,5 @@
-import type { Quest } from "../types";
 import { useState } from "react";
+import type { Quest } from "../types";
 
 interface AddQuestFormProps {
   addQuest: (title: Quest["id"]) => void;
