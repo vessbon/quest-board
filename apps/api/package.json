@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "bun --watch src/server.ts",
+    "build": "tsc -b && tsup src/server.ts",
     "apply-schema": "atlas schema apply --env local",
     "codegen": "kysely-codegen --dialect postgres --camel-case --out-file ../../packages/types/src/index.ts",
     "update-database": "bun apply-schema && bun codegen"
