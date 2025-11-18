@@ -1,23 +1,35 @@
 import { Hono } from "hono";
-import { cors } from "hono/cors";
-import { trpcServer } from "@hono/trpc-server";
+import { Env } from "./types";
+import { createRPCContext } from "./context";
+import { RPCHandler } from "@orpc/server/fetch";
+import { onError } from "@orpc/server";
 import { appRouter } from "./router";
+import { CORSPlugin } from "@orpc/server/plugins";
 
-const app = new Hono();
+export const handler = new RPCHandler(appRouter, {
+  plugins: [new CORSPlugin()],
+  interceptors: [
+    onError((error) => {
+      console.error(error);
+    }),
+  ],
+});
 
-app.use(
-  "/*",
-  cors({
-    origin: "http://localhost:5173",
-    credentials: true,
-  })
-);
+const app = new Hono<{ Bindings: Env }>();
 
-app.use(
-  "/trpc/*",
-  trpcServer({
-    router: appRouter,
-  })
-);
+app.use("/rpc/*", async (c, next) => {
+  const context = await createRPCContext(c.req.raw.headers, c.env);
+
+  const { matched, response } = await handler.handle(c.req.raw, {
+    prefix: "/rpc",
+    context,
+  });
+
+  if (matched) {
+    return c.newResponse(response.body, response);
+  }
+
+  return await next();
+});
 
 export default app;

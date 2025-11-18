@@ -1,8 +1,8 @@
 import { useState } from "react";
-import type { Quest } from "../types";
+import type { QuestCreateInput } from "../types";
 
 interface AddQuestFormProps {
-  addQuest: (title: Quest["id"]) => void;
+  addQuest: (title: QuestCreateInput) => void;
 }
 
 export default function AddQuestForm({ addQuest }: AddQuestFormProps) {
@@ -11,7 +11,7 @@ export default function AddQuestForm({ addQuest }: AddQuestFormProps) {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     if (!title.trim()) return;
-    addQuest(title);
+    addQuest({ title });
     setTitle("");
   };
 

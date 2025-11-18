@@ -1,0 +1,13 @@
+{
+  "name": "quest-board-api",
+  "main": "./dist/server.js",
+  "compatibility_date": "2025-11-14",
+  "d1_databases": [
+    {
+      "binding": "questboard",
+      "database_name": "questboard",
+      "database_id": "adc4869d-42e0-450b-ac41-7288f733e05f",
+      "migrations_dir": "drizzle"
+    }
+  ]
+}

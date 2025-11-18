@@ -1,11 +1,15 @@
-import type { Quest } from "../types";
+import type {
+  QuestListOutput,
+  QuestCompleteInput,
+  QuestDeleteInput,
+} from "../types";
 import QuestCard from "./QuestCard";
 import EmptyCard from "./EmptyCard";
 
 interface QuestListProps {
-  quests: Quest[];
-  toggleComplete: (id: Quest["id"]) => void;
-  deleteQuest: (id: Quest["id"]) => void;
+  quests: QuestListOutput;
+  toggleComplete: (id: QuestCompleteInput) => void;
+  deleteQuest: (id: QuestDeleteInput) => void;
 }
 
 export default function QuestList({
