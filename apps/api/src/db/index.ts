@@ -1,15 +1,15 @@
-import { Kysely, PostgresDialect, CamelCasePlugin } from "kysely";
-import { Pool } from "pg";
-import type { DB } from "@repo/types";
+import { Kysely, CamelCasePlugin } from "kysely";
+import { Kyselify } from "drizzle-orm/kysely";
+import { D1Dialect } from "kysely-d1";
+import { quest } from "../db/schema";
 
-require("dotenv").config;
+type Database = {
+  quest: Kyselify<typeof quest>;
+};
 
-export const db = new Kysely<DB>({
-  dialect: new PostgresDialect({
-    pool: new Pool({
-      connectionString: process.env.DATABASE_URL,
-    }),
-  }),
-
-  plugins: [new CamelCasePlugin()],
-});
+export function createDb(d1: D1Database) {
+  return new Kysely<Database>({
+    dialect: new D1Dialect({ database: d1 }),
+    plugins: [new CamelCasePlugin()],
+  });
+}

@@ -1,10 +1,14 @@
 import { useState } from "react";
-import type { Quest } from "../types";
+import type {
+  QuestCompleteInput,
+  QuestDeleteInput,
+  QuestOutput,
+} from "../types";
 
 interface QuestCardProps {
-  quest: Quest;
-  toggleComplete: (id: Quest["id"]) => void;
-  deleteQuest: (id: Quest["id"]) => void;
+  quest: QuestOutput;
+  toggleComplete: (id: QuestCompleteInput) => void;
+  deleteQuest: (id: QuestDeleteInput) => void;
 }
 
 export default function QuestCard({
@@ -12,7 +16,8 @@ export default function QuestCard({
   toggleComplete,
   deleteQuest,
 }: QuestCardProps) {
-  const [checked, setChecked] = useState<Quest["completed"]>(quest.completed);
+  if (!quest) return;
+  const [checked, setChecked] = useState<boolean>(quest.completed ?? false);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);
