@@ -5,27 +5,27 @@
   "private": true,
   "scripts": {
     "dev": "bun --watch src/server.ts",
-    "build": "tsc -b && tsup src/server.ts",
+    "build": "tsc -b && tsup src/server.ts --format esm",
+    "migrate-diff": "atlas migrate diff --env local",
     "apply-schema": "atlas schema apply --env local",
     "codegen": "kysely-codegen --dialect postgres --camel-case --out-file ../../packages/types/src/index.ts",
     "update-database": "bun apply-schema && bun codegen"
   },
   "devDependencies": {
-    "@repo/types": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
+    "@repo/typescript": "workspace:*",
     "@types/bun": "latest",
-    "kysely-codegen": "^0.19.0",
+    "drizzle-kit": "^0.31.7",
     "tsup": "^8.5.1",
     "typescript": "~5.9.3"
   },
   "dependencies": {
     "@hono/trpc-server": "^0.4.0",
-    "@trpc/server": "^11.7.1",
-    "@types/pg": "^8.15.6",
+    "@orpc/server": "^1.11.3",
     "dotenv": "^17.2.3",
+    "drizzle-orm": "^0.44.7",
     "hono": "^4.10.4",
     "kysely": "^0.28.8",
-    "pg": "^8.16.3",
+    "kysely-d1": "^0.4.0",
     "superjson": "^2.2.5",
     "zod": "^4.1.12"
   }
