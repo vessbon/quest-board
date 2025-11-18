@@ -1,5 +1,5 @@
 import { os } from "@orpc/server";
-import { RPCContext } from "./context";
+import type { RPCContext } from "./context";
 
 const base = os.$context<RPCContext>();
 
