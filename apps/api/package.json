@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "bun --watch src/server.ts",
-    "build": "tsc -b && tsup src/server.ts --format esm",
+    "build": "bunx wrangler types && tsc -b && tsup src/server.ts --format esm",
     "migrate-diff": "atlas migrate diff --env local",
     "apply-schema": "atlas schema apply --env local",
     "codegen": "kysely-codegen --dialect postgres --camel-case --out-file ../../packages/types/src/index.ts",

@@ -2,8 +2,10 @@
   "name": "quest-board",
   "private": true,
   "scripts": {
-    "build": "turbo run build",
     "dev": "turbo run dev",
+    "build": "turbo run build",
+    "build:api": "bun run --cwd ./apps/api build",
+    "build:web": "bun run --cwd ./apps/web build",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types"
