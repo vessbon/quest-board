@@ -22,3 +22,9 @@ logs
 
 # Misc
 *.local
+
+# Database
+.sqlite
+
+# Cloudflare Workers
+.wrangler
