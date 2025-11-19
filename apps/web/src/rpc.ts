@@ -8,7 +8,7 @@ import { createTanstackQueryUtils } from "@orpc/tanstack-query";
 export const queryClient = new QueryClient();
 
 const link = new RPCLink({
-  url: "http://localhost:8787/rpc",
+  url: "https://quest-board-api.vessbon.workers.dev/rpc",
   interceptors: [
     onError((error) => {
       console.error(error);
